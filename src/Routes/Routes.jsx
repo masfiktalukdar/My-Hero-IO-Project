@@ -1,11 +1,13 @@
-import React from 'react';
 import { createBrowserRouter } from "react-router-dom";
-import Root from '../Pages/Root/Root';
-import Errorpage from '../Pages/ErrorPage/Errorpage';
-import Home from '../Pages/Home/Home';
-import Installation from '../Pages/Installation/Installation';
-import Apps from '../Pages/Apps/Apps';
-import AppDetails from '../Pages/AppDetails/AppDetails'; // AppDetails import
+import Root from '../pages/Root/Root';
+import Errorpage from '../pages/ErrorPage/Errorpage';
+import Home from '../pages/Home/Home';
+import Installation from '../pages/Installation/Installation';
+import Apps from '../pages/Apps/Apps';
+import AppDetails from '../pages/AppDetails/AppDetails';
+import Login from "../pages/Login/Login";
+import Register from "../pages/Register/Register";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -22,12 +24,20 @@ export const router = createBrowserRouter([
         Component: Apps,
       },
       {
-        path: "apps/:id", // dynamic route
-        Component: AppDetails,
+        path: "apps/:id",
+        element: <PrivateRoute><AppDetails /></PrivateRoute>,
       },
       {
         path: "installation",
-        Component: Installation,
+        element: <PrivateRoute><Installation /></PrivateRoute>,
+      },
+      {
+        path: "login",
+        Component: Login,
+      },
+      {
+        path: "register",
+        Component: Register,
       }
     ]
   },
